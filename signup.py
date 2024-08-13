@@ -10,29 +10,85 @@ print('''
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <title>Sign Up Page</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            background-color: none;
+            background: none;
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+    <header class="bg-primary text-white text-center py-3">
+        <h1>Sign Up Here &downarrow;</h1>
+    </header>
+
     <div class="container mt-5">
         <h2>Sign Up</h2>
-        <form action="/signup" method="post">
+        <form method="post">
+            <!-- Name -->
             <div class="form-group">
-                <label for="signup-username">Username:</label>
-                <input type="text" id="signup-username" name="username" class="form-control" required>
+                <label for="signup-name">Name:</label>
+                <input type="text" name="name" id="name" class="form-control" required>
             </div>
+            <!-- Phone -->
+            <div class="form-group">
+                <label for="signup-phone">Phone:</label>
+                <input type="number" name="phone" id="phone" class="form-control" required>
+            </div>
+            <!-- DOB -->
+            <div class="form-group">
+                <label for="signup-dob">DOB:</label>
+                <input type="text" name="dob" id="dob" class="form-control" required>
+            </div>
+            <!-- Address -->
+            <div class="form-group">
+                <label for="signup-address">Address:</label>
+                <input type="text" name="address" id="address" class="form-control" required>
+            </div>
+            <!-- City -->
+            <div class="form-group">
+                <label for="signup-city">City:</label>
+                <input type="text" name="city" id="city" class="form-control" required>
+            </div>
+            <!-- Email -->
             <div class="form-group">
                 <label for="signup-email">Email:</label>
-                <input type="email" id="signup-email" name="email" class="form-control" required>
+                <input type="email" name="email" id="email" class="form-control" required>
             </div>
+            <!-- Username -->
+            <div class="form-group">
+                <label for="signup-username">Username:</label>
+                <input type="text" name="username" id="username" class="form-control" required>
+            </div>
+            <!-- Password -->
             <div class="form-group">
                 <label for="signup-password">Password:</label>
-                <input type="password" id="signup-password" name="password" class="form-control" required>
+                <input type="password" name="password" id="password" class="form-control" required>
             </div>
-            <button type="submit" class="btn btn-primary">Sign Up</button>
+            <!-- User Type -->
+            <div class="form-group">
+                <label for="signup-usertype">User Type:</label>
+                <select name="usertype" id="usertype" class="form-control" required>
+                    <option value="">Select</option>
+                    <option value="rider">Rider</option>
+                    <option value="sharer">Sharer</option>
+                </select>
+            </div>
+            <!-- Sign-Up Button -->
+            <button type="submit" name="submit" id="submit" class="btn btn-primary btn-block">Sign Up</button>
         </form>
         <p class="mt-3">Already have an account? <a href="login.py">Login here</a>.</p>
     </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2024 All Rights Reserved | Ride Sharing</p>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
@@ -41,38 +97,38 @@ print('''
 </html>
 ''')
 
-
+# For Showing Error
 cgitb.enable()
 
 # Database connection
-connection = pymysql.connect(
-    host='localhost',
-    user='root',
-    password='',
-    database='ridesharing'
-)
+conn = pymysql.connect(host='localhost', user='root', password='', database='ridesharing')
 
+# cursor
+cur = conn.cursor()
+
+# Sign-Up Form
 form = cgi.FieldStorage()
-username = form.getvalue('username')
-email = form.getvalue('email')
-password = form.getvalue('password')
 
-if username and email and password:
-    try:
-        with connection.cursor() as cursor:
-            sql = "SELECT * FROM users WHERE username=%s OR email=%s"
-            cursor.execute(sql, (username, email))
-            user = cursor.fetchall()
+# sign-up fields
+Name = form.getvalue('name')
+Phone = form.getvalue('phone')
+Dob = form.getvalue('dob')
+Address = form.getvalue('address')
+City = form.getvalue('city')
+Email = form.getvalue('email')
+Username = form.getvalue('username')
+Password = form.getvalue('password')
+Usertype = form.getvalue('usertype')
 
-            if user:
-                print("Username or email already exists. <a href='../signup.html'>Try again</a>")
-            else:
-                sql = "INSERT INTO users (username, email, password) VALUES (%s, %s, %s)"
-                cursor.execute(sql, (username, email, password))
-                connection.commit()
-                print("Registration successful. <a href='../login.html'>Login</a>")
+try:
+    q = '''INSERT INTO users(Name, Phone, DOB, Address, City, Email, Username, Password, Usertype) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')'''
+    cur.execute(q, (Name, Phone, Dob, Address, City, Email, Username, Password, Usertype))
+    conn.commit()
+    print('''<script>alert('Your Details Registered Successfully'); location.href="signup.py"</script>''')
 
-    except Exception as e:
-        print(f"Error: {e}")
+except pymysql.MySQLError as e:
+    print(f'<script>alert("Error: {e}"); window.location.href="signup.py";</script>')
 
-connection.close()
+finally:
+    if conn:
+        conn.close()
