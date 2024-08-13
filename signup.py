@@ -3,6 +3,9 @@ import cgi
 import cgitb
 import pymysql
 
+# For Showing Error
+cgitb.enable()
+
 print("content-type: text/html \r\n\r\n")
 print('''
 <!DOCTYPE html>
@@ -97,32 +100,25 @@ print('''
 </html>
 ''')
 
-# For Showing Error
-cgitb.enable()
-
 # Database connection
 conn = pymysql.connect(host='localhost', user='root', password='', database='ridesharing')
-
-# cursor
 cur = conn.cursor()
-
-# Sign-Up Form
 form = cgi.FieldStorage()
 
-# sign-up fields
-Name = form.getvalue('name')
-Phone = form.getvalue('phone')
-Dob = form.getvalue('dob')
-Address = form.getvalue('address')
-City = form.getvalue('city')
-Email = form.getvalue('email')
-Username = form.getvalue('username')
-Password = form.getvalue('password')
-Usertype = form.getvalue('usertype')
-
 try:
-    q = '''INSERT INTO users(Name, Phone, DOB, Address, City, Email, Username, Password, Usertype) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')'''
-    cur.execute(q, (Name, Phone, Dob, Address, City, Email, Username, Password, Usertype))
+    Name = form.getvalue('name')
+    Phone = form.getvalue('phone')
+    Dob = form.getvalue('dob')
+    Address = form.getvalue('address')
+    City = form.getvalue('city')
+    Email = form.getvalue('email')
+    Username = form.getvalue('username')
+    Password = form.getvalue('password')
+    Usertype = form.getvalue('usertype')
+
+    q = '''INSERT INTO users(Name, Phone, DOB, Address, City, Email, Username, Password, Usertype) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')''' % (Name, Phone, Dob, Address, City, Email, Username, Password, Usertype)
+
+    cur.execute(q)
     conn.commit()
     print('''<script>alert('Your Details Registered Successfully'); location.href="signup.py"</script>''')
 
