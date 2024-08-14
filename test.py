@@ -1,5 +1,6 @@
 import pymysql
 
+# Database Connection Test
 try:
     conn = pymysql.connect(host='localhost', user='root', password='', database='ridesharing')
     print("Connected to the database successfully!")
