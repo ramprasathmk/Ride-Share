@@ -1,10 +1,10 @@
--- DATABASE Creation
+-- DATABASE `ridesharing` Creation
 CREATE DATABASE ridesharing;
 
 -- Using `ridesharing` Database
 use ridesharing;
 
--- `users` TABLE Creation
+-- TABLE `users` Creation
 CREATE TABLE users (
     Id INT(3) UNSIGNED AUTO_INCREMENT,
     Name VARCHAR(20) NOT NULL,
