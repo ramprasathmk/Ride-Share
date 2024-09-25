@@ -1,4 +1,4 @@
-#!C:/Python311/python.exe
+#!C:/Python312/python.exe
 
 # import cgi
 # import cgitb
@@ -29,10 +29,12 @@ print('''
                 <label for="login-password">Password:</label>
                 <input type="password" id="login-password" name="password" class="form-control" required>
             </div>
+            <!--
             <div class="form-group">
                 <label for="login-usertype">Usertype:</label>
                 <input type="usertype" id="login-usertype" name="usertype" class="form-control" required>
             </div>
+            -->
             <button type="submit" class="btn btn-primary">Login</button>
         </form>
         <p class="mt-3">Don't have an account? <a href="signup.py">Sign up here</a>.</p>
@@ -67,4 +69,3 @@ print('''
 # username = form.getvalue('username', '')
 # email = form.getvalue('email', '')
 # password = form.getvalue('password', '')
-# usertype = form.getvalue('usertype', '')
