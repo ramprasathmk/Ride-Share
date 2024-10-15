@@ -78,7 +78,7 @@ print('''
     </main>
 
     <footer class="bg-dark text-white text-center py-3">
-        <p>&copy; 2024 Ride Sharing</p>
+        <p>Ride Sharing | Copyright &copy; 2024</p>
     </footer>
 
     <!-- jQuery and Bootstrap Bundle (includes Popper) -->
