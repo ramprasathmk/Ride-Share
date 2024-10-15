@@ -1,8 +1,8 @@
-#!C:/Python312/python.exe
+import cgi
+import cgitb
+import pymysql
 
-# import cgi
-# import cgitb
-# import pymysql
+cgitb.enable(display=1, logdir="D:/xampp/apache/logs")  # Logs errors in this directory
 
 print("content-type: text/html \r\n\r\n")
 print('''
@@ -20,7 +20,7 @@ print('''
 <body>
     <div class="container mt-5">
         <h2>Login</h2>
-        <form action="/login" method="post">
+        <form action="" method="post">
             <div class="form-group">
                 <label for="login-username">Username:</label>
                 <input type="text" id="login-username" name="username" class="form-control" required>
@@ -29,43 +29,43 @@ print('''
                 <label for="login-password">Password:</label>
                 <input type="password" id="login-password" name="password" class="form-control" required>
             </div>
-            <!--
-            <div class="form-group">
-                <label for="login-usertype">Usertype:</label>
-                <input type="usertype" id="login-usertype" name="usertype" class="form-control" required>
-            </div>
-            -->
             <button type="submit" class="btn btn-primary">Login</button>
         </form>
         <p class="mt-3">Don't have an account? <a href="signup.py">Sign up here</a>.</p>
     </div>
-
-    <script>
-      
-    </script>
 </body>
 </html>
 ''')
 
-# For Showing Error
-# cgitb.enable()
-#
-# # Connection
-# connection = pymysql.connect(
-#     host='localhost',
-#     user='root',
-#     password='',
-#     database='ridesharing'
-# )
-# # Cursor
-# cursor = connection.cursor()
-# # Form
-# form = cgi.FieldStorage()
-#
-# # Submit
-# Submit = form.getvalue("submit")
-#
-# # Form entities
-# username = form.getvalue('username', '')
-# email = form.getvalue('email', '')
-# password = form.getvalue('password', '')
+
+# Database connection setup
+db_connection = pymysql.connect(
+    host="localhost",
+    user="root",
+    password="",
+    database="ridesharing",
+)
+
+cursor = db_connection.cursor()
+form = cgi.FieldStorage()
+
+# Check if form was submitted
+if "username" in form and "password" in form:
+    Username = form.getvalue("username")
+    Password = form.getvalue("password")
+
+    # Secure parameterized query to avoid SQL injection
+    q = """SELECT Id FROM users WHERE Username=%s and Password=%s"""
+    cursor.execute(q, (Username, Password))
+    user = cursor.fetchone()
+
+    # If user is found, redirect to dashboard
+    if user is not None:
+        user_id = user[0]
+        print(f"""<script>alert('Login Successful!');location.href="dashboard.py?id={user_id}";</script>""")
+    else:
+        print("<script>alert('Invalid username or password. Please try again.');</script>")
+
+# Close the connection
+cursor.close()
+db_connection.close()
