@@ -22,22 +22,22 @@ cd Ride-Share
 
 :: Create a virtual environment in "env" folder
 echo Creating virtual environment...
-python -m venv env
+python -m venv rs_env
 
 :: Check if requirements.txt exists
 if not exist requirements.txt (
     echo requirements.txt file not found. Skipping package installation.
 ) else (
     echo Installing packages from requirements.txt...
-    env\Scripts\pip install -r requirements.txt
+    rs_env\Scripts\pip install -r requirements.txt
 )
 
 :: Activate the virtual environment
 echo Activating virtual environment...
 if "%ComSpec%"=="" (
-    env\Scripts\Activate
+    rs_env\Scripts\Activate
 ) else (
-    call env\Scripts\Activate
+    call rs_env\Scripts\Activate
 )
 
 echo Virtual environment is activated.
