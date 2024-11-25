@@ -15,4 +15,4 @@ Simple Ride share web app
 
 Thanks for visiting my portfolio! Feel free to explore [my repositories](https://github.com/ramprasathmk?tab=repositories) and ❤️ connect with me!
 
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?&logo=buy-me-a-coffee&logoColor=black)]()
+[//]: # ([![Buy Me A Coffee]&#40;https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?&logo=buy-me-a-coffee&logoColor=black&#41;]&#40;&#41;)
