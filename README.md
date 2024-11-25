@@ -7,7 +7,7 @@ Simple Ride share web app
 ---
 
 ## 🧑‍💻 Technologies Used
-[![Techs Used](https://skillicons.dev/icons?i=git,github,pycharm,html,css,py,bootstrap,mysql,md)](https://skillicons.dev)
+[![Techs Used](https://skillicons.dev/icons?i=git,github,pycharm,md,html,css,py,bootstrap,mysql)](https://skillicons.dev)
 
 ---
 
