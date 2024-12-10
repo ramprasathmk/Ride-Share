@@ -2,14 +2,19 @@
 
 
 ## 📑 Description
-Simple Ride share web app
+The **Ride Sharing** web app built with Python and Mysql.
 
----
 
 ## 🧑‍💻 Technologies Used
-[![Techs Used](https://skillicons.dev/icons?i=git,github,pycharm,md,html,css,py,bootstrap,mysql)](https://skillicons.dev)
+<div align="center">
+    <code><img width="50" src="https://user-images.githubusercontent.com/25181517/192108372-f71d70ac-7ae6-4c0d-8395-51d8870c2ef0.png" alt="Git" title="Git"/></code>
+	<code><img width="50" src="https://user-images.githubusercontent.com/25181517/192108374-8da61ba1-99ec-41d7-80b8-fb2f7c0a4948.png" alt="GitHub" title="GitHub"/></code>
+	<code><img width="50" src="https://github.com/user-attachments/assets/9f931c45-0585-4db0-86a7-25ce3f5bef25" alt="PyCharm" title="PyCharm"/></code>
+	<code><img width="50" src="https://user-images.githubusercontent.com/25181517/183898054-b3d693d4-dafb-4808-a509-bab54cf5de34.png" alt="Bootstrap" title="Bootstrap"/></code>
+	<code><img width="50" src="https://user-images.githubusercontent.com/25181517/183423507-c056a6f9-1ba8-4312-a350-19bcbc5a8697.png" alt="Python" title="Python"/></code>
+	<code><img width="50" src="https://user-images.githubusercontent.com/25181517/183896128-ec99105a-ec1a-4d85-b08b-1aa1620b2046.png" alt="MySQL" title="MySQL"/></code>
+</div>
 
----
 
 ## 🤝 Show your support
 
